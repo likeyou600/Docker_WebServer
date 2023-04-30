@@ -1,0 +1,45 @@
+<IfModule mod_ssl.c>
+NameVirtualHost *:443
+<VirtualHost *:443>
+
+ServerAdmin root@localhost
+ServerAlias your_domain
+ServerName your_ServerName
+
+Documentroot /var/www/CodingForum_web/dist
+<Directory /var/www/CodingForum_web/dist>
+Options -Indexes +FollowSymLinks
+AllowOverride All
+Require all granted
+ReWriteEngine On    
+allow from all
+</Directory>
+
+
+Alias /api /var/www/CodingForum_api/public
+<Directory /var/www/CodingForum_api/public>
+Options -Indexes +FollowSymLinks
+AllowOverride All
+Require all granted
+ReWriteEngine On    
+allow from all
+</Directory>
+
+
+ErrorLog ${APACHE_LOG_DIR}/test.local-error.log
+CustomLog ${APACHE_LOG_DIR}/test.local-access.log combined
+
+ReWriteEngine On
+SSLEngine on
+SSLCertificateFile /etc/letsencrypt/live/your_domain/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/your_domain/privkey.pem
+
+</VirtualHost>
+
+
+
+
+</IfModule>
+
+
+

@@ -1,0 +1,6 @@
+/db
+/certbot/conf
+/logs
+/docker-compose.yml
+/apache-config/default-ssl.conf
+/apache-config/000-default.conf

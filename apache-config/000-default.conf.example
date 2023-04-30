@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+
+ServerAdmin root@localhost
+ServerAlias your_domain
+ServerName your_ServerName
+
+DocumentRoot /var/www
+<Directory /var/www>
+Options -Indexes +FollowSymLinks
+AllowOverride All
+Require all granted
+allow from all
+</Directory>
+
+ErrorLog ${APACHE_LOG_DIR}/test.local-error.log
+CustomLog ${APACHE_LOG_DIR}/test.local-access.log combined
+RewriteEngine on
+</VirtualHost>
+
+
+
+
+

@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  web:
+    image: php:apache
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./app:/var/www/
+      - ./apache-config:/etc/apache2/sites-enabled/
+      - ./certbot/conf:/etc/letsencrypt/
+      - ./logs:/var/log/apache2/
+    build: ./app
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - laravel-shouts
+
+  db:
+    image: mariadb:10.3.9
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ROOT_PASSWORD
+      MYSQL_USER: USER
+      MYSQL_PASSWORD: PASSWORD
+    volumes:
+      - ./db:/var/lib/mysql
+    restart: always
+    networks:
+      - laravel-shouts
+
+  certbot:
+    image: certbot/certbot
+    command: certonly --webroot --webroot-path=/var/www -d your_domain -m your_email --agree-tos --no-eff-email && certbot update_symlinks
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./app:/var/www
+    depends_on:
+      - web
+    restart: no
+
+networks:
+  laravel-shouts:
+    driver: bridge
