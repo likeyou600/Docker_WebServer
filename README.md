@@ -4,8 +4,6 @@
 1. clone build web api to app folder
 
 2. docker-compose -f docker-compose.yml up --build
-or
-2. docker-compose -f docker-compose.yml up -d
 
 3. edit certbot email domain
 
