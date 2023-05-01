@@ -1,14 +1,15 @@
 # webserver set up
 --------------------
 ## Docker環境
-1. 開啟或關閉 Windows 功能 -> Hyper-V打勾
+1. https://adersaytech.com/tutorial/kb-article/enable-hyper-v-on-windows-home.html
+2. 開啟或關閉 Windows 功能 -> Hyper-V打勾
 
-2. 下載Docker Desktop
+3. 下載Docker Desktop
     https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module
 
-3. Docker Desktop setting->General->取消勾選Use the WSL 2 based engine
+4. Docker Desktop setting->General->取消勾選Use the WSL 2 based engine
 
-4. 設定環境配置CPU,memory
+5. 設定環境配置CPU,memory
 --------------------
 ## Step
 1. clone web、api to app folder, then build web and install api
