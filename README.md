@@ -1,7 +1,8 @@
 # webserver set up
 --------------------
 ## Docker環境
-1. https://adersaytech.com/tutorial/kb-article/enable-hyper-v-on-windows-home.html
+```shell
+1.  [ [https://adersaytech.com/tutorial/kb-article/enable-hyper-v-on-windows-home.html](https://adersaytech.com/tutorial/kb-article/enable-hyper-v-on-windows-home.html "link") ] 
 2. 開啟或關閉 Windows 功能 -> Hyper-V打勾
 
 3. 下載Docker Desktop
@@ -10,8 +11,10 @@
 4. Docker Desktop setting->General->取消勾選Use the WSL 2 based engine
 
 5. 設定環境配置CPU,memory
+```
 --------------------
 ## Step
+```shell
 1. clone web、api to app folder, then build web and install api
 
 2. change all code.bakerychu.com to your domain
@@ -25,6 +28,7 @@
     certbot certonly --webroot --webroot-path=/var/www -d your_domain -m your_mail --agree-tos --no-eff-email
 
 6. enjoy
+```
 --------------------
 
 ## Dockerfile常用指令
