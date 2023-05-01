@@ -1,4 +1,5 @@
 FROM php:apache
+
 RUN bash -c "a2enmod rewrite && a2enmod ssl"
 RUN chown -R www-data:www-data /var/www
 
@@ -20,3 +21,8 @@ RUN apt-get update && apt-get install -y \
     pdo \
     pdo_mysql \
     zip
+
+RUN apt-get update && \
+    apt-get install -y certbot cron
+
+RUN echo "0 0 * * * certbot renew --quiet" | crontab -

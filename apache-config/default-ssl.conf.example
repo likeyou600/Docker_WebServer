@@ -30,9 +30,9 @@ ErrorLog ${APACHE_LOG_DIR}/test.local-error.log
 CustomLog ${APACHE_LOG_DIR}/test.local-access.log combined
 
 ReWriteEngine On
-SSLEngine on
-SSLCertificateFile /etc/letsencrypt/live/your_domain/fullchain.pem
-SSLCertificateKeyFile /etc/letsencrypt/live/your_domain/privkey.pem
+#SSLEngine on
+#SSLCertificateFile /etc/letsencrypt/live/your_domain/fullchain.pem
+#SSLCertificateKeyFile /etc/letsencrypt/live/your_domain/privkey.pem
 
 </VirtualHost>
 
