@@ -2,7 +2,7 @@
 --------------------
 ## Docker環境
 ```shell
-1.  [ [https://adersaytech.com/tutorial/kb-article/enable-hyper-v-on-windows-home.html](https://adersaytech.com/tutorial/kb-article/enable-hyper-v-on-windows-home.html "link") ] 
+1. https://adersaytech.com/tutorial/kb-article/enable-hyper-v-on-windows-home.html
 2. 開啟或關閉 Windows 功能 -> Hyper-V打勾
 
 3. 下載Docker Desktop
@@ -32,6 +32,7 @@
 --------------------
 
 ## Dockerfile常用指令
+```shell
 1.當cached時
 ARG CACHEBUST=1
 RUN ls -l 
@@ -43,4 +44,4 @@ docker exec -ti docker_webserver-db-1 bash
 
 2. clear cache
    docker image prune
-
+```
