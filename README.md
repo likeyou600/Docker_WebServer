@@ -14,15 +14,17 @@
 ## Step
 1. clone web、api to app folder, then build web and install api
 
-2. 第一次 : docker-compose -f docker-compose.yml up --build 
+2. change all code.bakerychu.com to your domain
+   
+3. 第一次 : docker-compose -f docker-compose.yml up --build   #4mins
    以後   : docker-compose -f docker-compose.yml up -d
 
-3. edit apache-config
+4. edit apache-config
 
-4. 獲取憑證
+5. 獲取憑證
     certbot certonly --webroot --webroot-path=/var/www -d your_domain -m your_mail --agree-tos --no-eff-email
 
-5. enjoy
+6. enjoy
 --------------------
 
 ## Dockerfile常用指令
@@ -32,4 +34,9 @@ RUN ls -l
 --------------------
 ## 指令
 1. 進入Container bash
-docker exec -ti your_container_name bash
+docker exec -ti docker_webserver-web-1 bash
+docker exec -ti docker_webserver-db-1 bash
+
+2. clear cache
+   docker image prune
+
