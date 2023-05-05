@@ -28,6 +28,7 @@
     certbot certonly --webroot -w /var/www -d your_domain
     測試用
     certbot certonly --webroot -w /var/www -d coding.cs.pu.edu.tw --dry-run
+    http://coding.cs.pu.edu.tw/.well-known/acme-challenge/GcpqL2lS1WVPiNmuSKsbKqphre74Zav5lZx8Mb1aW1Q 
 6. enjoy
 ```
 --------------------
