@@ -25,8 +25,9 @@
 4. edit apache-config
 
 5. 獲取憑證
-    certbot certonly --webroot --webroot-path=/var/www -d your_domain -m your_mail --agree-tos --no-eff-email
-
+    certbot certonly --webroot -w /var/www -d your_domain
+    測試用
+    certbot certonly --webroot -w /var/www -d coding.cs.pu.edu.tw --dry-run
 6. enjoy
 ```
 --------------------
