@@ -29,6 +29,8 @@
     測試用
     certbot certonly --webroot -w /var/www -d coding.cs.pu.edu.tw --dry-run
     http://coding.cs.pu.edu.tw/.well-known/acme-challenge/GcpqL2lS1WVPiNmuSKsbKqphre74Zav5lZx8Mb1aW1Q 
+    ![image](https://user-images.githubusercontent.com/58775534/236414891-6c697141-045a-448d-8533-b503c11975cd.png)
+
 6. enjoy
 ```
 --------------------
