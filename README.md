@@ -21,6 +21,7 @@
    
 3. 第一次 : docker-compose -f docker-compose.yml up --build   #4mins
    以後   : docker-compose -f docker-compose.yml up -d
+   新版 docker compose 沒有-
 
 4. edit apache-config
 
