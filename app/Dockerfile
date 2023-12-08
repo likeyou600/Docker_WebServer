@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     zip
 RUN apt-get update
 
-RUN apt-get install -y python3 python3-pip
+RUN apt-get install -y python3 python3-pip && python3 -m venv /opt/venv
     
 RUN pip3 install certbot-dns-godaddy
 RUN pip3 install certbot certbot-dns-google-domains
