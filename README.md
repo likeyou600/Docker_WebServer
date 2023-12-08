@@ -26,11 +26,13 @@
 4. edit apache-config
 
 5. 獲取憑證
+    根據不同網域商 修改credentials.ini
+    
     google domain
     使用https://github.com/aaomidi/certbot-dns-google-domains 
     certbot certonly --authenticator 'dns-google-domains' --dns-google-domains-credentials '/credentials.ini' --server 'https://acme-v02.api.letsencrypt.org/directory' --dns-google-domains-zone 'bakerychu.com' -d 'bakerychu.com' -d '*.bakerychu.com'
 
-    godaddy
+    godaddy 此處取得key https://developer.godaddy.com/keys
     使用https://github.com/miigotu/certbot-dns-godaddy
     certbot certonly --authenticator dns-godaddy --dns-godaddy-credentials '/credentials.ini' --server 'https://acme-v02.api.letsencrypt.org/directory '-d 'example.com' -d '*.example.com'
 
