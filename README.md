@@ -26,7 +26,12 @@
 4. edit apache-config
 
 5. 獲取憑證
-    certbot certonly --webroot -w /var/www -d your_domain
+    google domain
+    使用https://github.com/aaomidi/certbot-dns-google-domains 
+    certbot certonly --authenticator 'dns-google-domains' --dns-google-domains-credentials '/var/www/google.ini' --server 'https://acme-v02.api.letsencrypt.org/directory' --dns-google-domains-zone 'bakerychu.com' -d 'bakerychu.com' -d '*.bakerychu.com'
+
+    並放入crontab 此指令 :  certbot renew --quiet
+
     測試用
     certbot certonly --webroot -w /var/www -d coding.cs.pu.edu.tw --dry-run
     http://coding.cs.pu.edu.tw/.well-known/acme-challenge/GcpqL2lS1WVPiNmuSKsbKqphre74Zav5lZx8Mb1aW1Q 
