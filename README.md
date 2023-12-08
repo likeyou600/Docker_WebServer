@@ -43,6 +43,9 @@
     http://coding.cs.pu.edu.tw/.well-known/acme-challenge/GcpqL2lS1WVPiNmuSKsbKqphre74Zav5lZx8Mb1aW1Q 
     ![image](https://user-images.githubusercontent.com/58775534/236414891-6c697141-045a-448d-8533-b503c11975cd.png)
 
+    若需要刪除舊有的
+    certbot delete --cert-name XXX
+
 6. enjoy
 ```
 --------------------
