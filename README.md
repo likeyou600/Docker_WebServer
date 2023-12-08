@@ -27,7 +27,8 @@
 
 5. 獲取憑證
     根據不同網域商 修改credentials.ini
-    
+    chmod 600
+
     google domain
     使用https://github.com/aaomidi/certbot-dns-google-domains 
     certbot certonly --authenticator 'dns-google-domains' --dns-google-domains-credentials '/credentials.ini' --server 'https://acme-v02.api.letsencrypt.org/directory' --dns-google-domains-zone 'bakerychu.com' -d 'bakerychu.com' -d '*.bakerychu.com' --register-unsafely-without-email
