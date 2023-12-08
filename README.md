@@ -30,11 +30,11 @@
     
     google domain
     使用https://github.com/aaomidi/certbot-dns-google-domains 
-    certbot certonly --authenticator 'dns-google-domains' --dns-google-domains-credentials '/credentials.ini' --server 'https://acme-v02.api.letsencrypt.org/directory' --dns-google-domains-zone 'bakerychu.com' -d 'bakerychu.com' -d '*.bakerychu.com'
+    certbot certonly --authenticator 'dns-google-domains' --dns-google-domains-credentials '/credentials.ini' --server 'https://acme-v02.api.letsencrypt.org/directory' --dns-google-domains-zone 'bakerychu.com' -d 'bakerychu.com' -d '*.bakerychu.com' --register-unsafely-without-email
 
     godaddy 此處取得key https://developer.godaddy.com/keys
     使用https://github.com/miigotu/certbot-dns-godaddy
-    certbot certonly --authenticator dns-godaddy --dns-godaddy-credentials '/credentials.ini' --server 'https://acme-v02.api.letsencrypt.org/directory '-d 'example.com' -d '*.example.com'
+    certbot certonly --authenticator dns-godaddy --dns-godaddy-credentials '/credentials.ini' --server 'https://acme-v02.api.letsencrypt.org/directory '-d 'example.com' -d '*.example.com' --register-unsafely-without-email
 
     並放入crontab 此指令 :  certbot renew --quiet
 
