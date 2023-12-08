@@ -21,14 +21,13 @@ RUN apt-get update && apt-get install -y \
     pdo \
     pdo_mysql \
     zip
+RUN apt-get update
 
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip
+RUN apt-get install -y python3 python3-pip
     
 RUN pip3 install certbot-dns-godaddy
 RUN pip3 install certbot certbot-dns-google-domains
 
-RUN apt-get update && \
-    apt-get install -y certbot cron
+RUN apt-get install -y certbot cron
 
 RUN echo "0 0 * * * certbot renew --quiet" | crontab -
