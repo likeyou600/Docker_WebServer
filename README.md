@@ -25,7 +25,7 @@
 
 4. edit apache-config
 
-5. 獲取憑證
+5. 獲取憑證(利用certboy)
     根據不同網域商 修改credentials.ini
     chmod 600
 
@@ -47,6 +47,19 @@
 
     若需要刪除舊有的
     certbot delete --cert-name XXX
+
+5. 獲取憑證(遠振)
+    先在docker web server 生成key csr 或者透過遠振官網產生csr與key
+    openssl genpkey -algorithm RSA -out /var/www/key/private-key.key
+    openssl req -new -key /var/www/key/private-key.key -out /var/www/key/new-csr-file.csr
+
+    把csr貼上遠振網站 獲得憑證
+    X.509 Certificate
+    Intermediate Certificate
+    Root Certificate
+
+    SSLCertificateFile : 三個合成fullchain.pem
+    SSLCertificateKeyFile : server產生key
 
 6. enjoy
 ```
