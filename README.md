@@ -18,7 +18,11 @@
 1. clone web、api to app folder, then build web and install api
 
 2. change all code.bakerychu.com to your domain
-   
+vue:
+src/main.js
+src/router/index.js
+vue.config.js
+
 3. 第一次 : docker-compose -f docker-compose.yml up --build   #4mins
    以後   : docker-compose -f docker-compose.yml up -d
    新版 docker compose 沒有-
