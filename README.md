@@ -87,5 +87,5 @@ docker exec -ti docker_webserver-web-1 bash
 docker exec -ti docker_webserver-db-1 bash
 
 2. clear cache
-   docker image prune
+   docker system prune -a
 ```
