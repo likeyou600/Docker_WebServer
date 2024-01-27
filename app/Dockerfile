@@ -33,4 +33,6 @@ RUN pip3 install certbot certbot-dns-google-domains
 
 RUN apt-get install -y certbot cron
 
+RUN apt-get install -y mariadb-client
+
 RUN echo "0 0 * * * certbot renew --quiet" | crontab -
