@@ -65,7 +65,13 @@ vue.config.js
     SSLCertificateFile : 三個合成fullchain.pem
     SSLCertificateKeyFile : server產生key
 
-6. enjoy
+6. 
+設定linux環境下 定期備份docker mariadb資料
+crontab -e
+
+0 6 * * * sh /home/Docker_WebServer/backup_db.sh
+
+sudo service cron reload
 ```
 --------------------
 
