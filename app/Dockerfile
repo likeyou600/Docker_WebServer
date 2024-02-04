@@ -47,6 +47,7 @@ RUN echo "0 0 * * * certbot renew --quiet" | crontab -
 
 # Configure Supervisor
 RUN mkdir -p /etc/supervisor/conf.d
+RUN mkdir -p /var/log/supervisor
 
 # Change ownership of web directory
 RUN chown -R www-data:www-data /var/www
@@ -57,4 +58,4 @@ RUN echo "function laravelclear() {" >> /root/.bashrc
 RUN echo "    php artisan cache:clear && php artisan route:cache && php artisan config:cache" >> /root/.bashrc
 RUN echo "}" >> /root/.bashrc
 
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/usr/bin/supervisord"]
