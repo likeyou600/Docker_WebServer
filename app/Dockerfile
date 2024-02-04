@@ -2,6 +2,8 @@ FROM php:apache
 
 # Install necessary packages
 RUN apt-get update && apt-get install -y \
+    certbot \
+    cron \
     nano \
     python3 \
     python3-pip \
