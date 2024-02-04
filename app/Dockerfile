@@ -45,7 +45,6 @@ RUN echo "0 0 * * * certbot renew --quiet" | crontab -
 
 # Configure Supervisor
 RUN mkdir -p /etc/supervisor/conf.d
-COPY queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
 
 # Change ownership of web directory
 RUN chown -R www-data:www-data /var/www
