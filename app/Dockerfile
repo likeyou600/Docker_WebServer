@@ -57,4 +57,4 @@ RUN echo "function laravelclear() {" >> /root/.bashrc
 RUN echo "    php artisan cache:clear && php artisan route:cache && php artisan config:cache" >> /root/.bashrc
 RUN echo "}" >> /root/.bashrc
 
-ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
