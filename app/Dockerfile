@@ -1,15 +1,25 @@
 FROM php:apache
 
-RUN bash -c "a2enmod rewrite && a2enmod ssl"
-RUN chown -R www-data:www-data /var/www
-
+# Install necessary packages
 RUN apt-get update && apt-get install -y \
+    nano \
+    python3 \
+    python3-pip \
+    python3-venv \
+    supervisor \
     libicu-dev \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     libzip-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    mariadb-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable Apache modules
+RUN a2enmod rewrite && a2enmod ssl
+
+# Configure PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
     bcmath \
     calendar \
@@ -21,18 +31,23 @@ RUN apt-get update && apt-get install -y \
     pdo \
     pdo_mysql \
     zip
-RUN apt-get update
 
-RUN apt-get install -y nano
-
-RUN apt-get install -y python3 python3-pip python3-venv && python3 -m venv /opt/venv
+# Create and activate Python virtual environment
+RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
+# Install Certbot and related packages
 RUN pip install certbot-dns-godaddy==2.6.0
 RUN pip3 install certbot certbot-dns-google-domains
 
-RUN apt-get install -y certbot cron
-
-RUN apt-get install -y mariadb-client
-
+# Set up Certbot cron job for certificate renewal
 RUN echo "0 0 * * * certbot renew --quiet" | crontab -
+
+# Configure Supervisor
+RUN mkdir -p /etc/supervisor/conf.d
+COPY queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
+
+# Change ownership of web directory
+RUN chown -R www-data:www-data /var/www
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
