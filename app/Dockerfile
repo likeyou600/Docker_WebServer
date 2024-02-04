@@ -50,4 +50,10 @@ COPY queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
 # Change ownership of web directory
 RUN chown -R www-data:www-data /var/www
 
+# Set up aliases and functions
+RUN echo "alias lc='laravelclear'" >> /root/.bashrc
+RUN echo "function laravelclear() {" >> /root/.bashrc
+RUN echo "    php artisan cache:clear && php artisan route:cache && php artisan config:cache" >> /root/.bashrc
+RUN echo "}" >> /root/.bashrc
+
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
