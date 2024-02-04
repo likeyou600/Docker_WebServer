@@ -11,7 +11,7 @@ services:
       - ./apache-config:/etc/apache2/sites-enabled/
       - ./certbot/conf:/etc/letsencrypt/
       - ./logs:/var/log/apache2/
-      - ./supervisor:/etc/supervisor/conf.d/
+      - ./supervisor:/etc/supervisor/
 
     build:
       context: .
