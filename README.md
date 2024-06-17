@@ -17,6 +17,13 @@
 ```shell
 1. clone web、api to app folder, then build web and install api
 
+api folder
+- Make sure all files are owned by the Apache group and user. In Ubuntu it is the www-data group and user
+    - sudo chown -R www-data:www-data /path/to/webserver/www
+
+- Next enabled all members of the www-data group to read and write files
+    - sudo chmod -R g+rw /path/to/webserver/www
+
 2. change all code.bakerychu.com to your domain
 vue:
 src/main.js
