@@ -6,3 +6,7 @@
 /apache-config/000-default.conf
 /app/CodingForum_api
 /app/CodingForum_web
+/server_data/*
+!/server_data/.env.example
+/nginx/backend/default.conf
+/nginx/frontend/default.conf

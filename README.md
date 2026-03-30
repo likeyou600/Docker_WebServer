@@ -96,3 +96,9 @@ docker exec -ti docker_webserver-db-1 bash
 2. clear cache
    docker system prune -a
 ```
+
+---
+
+```
+docker login ghcr.io
+```
