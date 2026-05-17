@@ -1,26 +1,81 @@
 version: "3"
-
 services:
-  web:
+  frontend:
+    image: ghcr.io/likeyou600/acc_web:v1.0.5
     ports:
       - "80:80"
-      - "443:443"
     volumes:
-      - ./app/docker-php-ext-opcache.ini:/usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
-      - ./app:/var/www/
-      - ./apache-config:/etc/apache2/sites-enabled/
-      - ./certbot/conf:/etc/letsencrypt/
-      - ./logs:/var/log/apache2/
-      - ./supervisor:/etc/supervisor/
+      - ./nginx/frontend/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - webserver-network
 
-    build:
-      context: .
-      dockerfile: ./app/Dockerfile
+  backend-nginx:
+    image: ghcr.io/likeyou600/acc_api:v1.0.5
+    command: ["/usr/sbin/nginx", "-g", "daemon off;"]
+    volumes:
+      - ./nginx/backend/default.conf:/etc/nginx/conf.d/default.conf
+      - ./server_data/storage:/var/www/html/public/storage
+    depends_on:
+      - backend
+    restart: always
+    expose:
+      - "80"
+    networks:
+      - webserver-network
+
+  backend:
+    image: ghcr.io/likeyou600/acc_api:v1.0.6
+    command: ["/usr/local/sbin/php-fpm", "--nodaemonize"]
+    env_file:
+      - ./server_data/.env
+    volumes:
+      - ./server_data/.env:/var/www/html/.env
+      - ./server_data/storage:/var/www/html/public/storage
     depends_on:
       - db
     restart: always
+    expose:
+      - "9000"
     networks:
-      - laravel-shouts
+      - webserver-network
+
+  worker:
+    image: ghcr.io/likeyou600/acc_api:v1.0.5
+    command:
+      ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+    env_file:
+      - ./server_data/.env
+    volumes:
+      - ./server_data/.env:/var/www/html/.env
+      - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./supervisor/conf.d:/etc/supervisor/conf.d
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - webserver-network
+
+  # certbot:
+  #   image: certbot/certbot
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   profiles:
+  #     - ssl
+
+  #   # Create and activate Python virtual environment
+  # RUN python3 -m venv /opt/venv
+  # ENV PATH="/opt/venv/bin:$PATH"
+
+  # # Install Certbot and related packages
+  # RUN pip install certbot-dns-godaddy==2.6.0
+  # RUN pip3 install certbot certbot-dns-google-domains
+
+  # # Set up Certbot cron job for certificate renewal
+  # RUN echo "0 0 * * * certbot renew --quiet" | crontab -
 
   db:
     image: mariadb:10.11
@@ -37,5 +92,5 @@ services:
       - laravel-shouts
 
 networks:
-  laravel-shouts:
+  webserver-network:
     driver: bridge
